@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anime Club</title>
+  <meta name="description" content="Official website of the Anime Club – meetings, events, officers, and how to join." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* === quick theme tokens === */
+    :root {
+      --bg: #ffffff;
+      --fg: #0b0f19;
+      --muted: #6b7280;
+      --card: #f8fafc;
+      --border: #e5e7eb;
+      --brand: #e11d48; /* sakura pink/red */
+      --brand-2: #2563eb; /* accent for hover/focus */
+      --ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(2, 8, 23, .06);
+    }
+    .dark {
+      --bg: #0b0f19;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #111827;
+      --border: #1f2937;
+      --brand: #f472b6; /* lighter pink in dark */
+      --brand-2: #93c5fd;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+
+    /* === base === */
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100%; display: block }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1rem }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1rem; border-radius: calc(var(--radius) - 4px); background: var(--brand); color: #fff; font-weight: 600; box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .btn:hover { filter: brightness(1.05) }
+    .btn:focus-visible { outline: none; box-shadow: var(--ring) }
+    .btn-outline { background: transparent; color: var(--fg); border: 1px solid var(--border) }
+    .tag { display:inline-block; padding:.25rem .5rem; border-radius:999px; background: var(--card); border:1px solid var(--border); color: var(--muted); font-size: .85rem }
+    .card { background: var(--card); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow) }
+    .grid { display:grid; gap:1rem }
+    @media (min-width: 768px){ .grid-2 { grid-template-columns: repeat(2, 1fr) } .grid-3{ grid-template-columns: repeat(3, 1fr) } }
+
+    /* === header / nav === */
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 80%, transparent); border-bottom: 1px solid var(--border) }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; height:64px }
+    .logo { display:flex; align-items:center; gap:.6rem; font-weight:800; }
+    .logo-mark { width:28px; height:28px; border-radius:8px; background: radial-gradient(60% 60% at 40% 40%, var(--brand), var(--brand-2)); box-shadow: var(--shadow) }
+    .menu { display:flex; gap:1rem; align-items:center }
+    .menu a { padding:.25rem .5rem; border-radius:8px }
+    .menu a:hover, .menu a[aria-current="page"] { background: var(--card) }
+    .theme-toggle { border:1px solid var(--border); background: var(--card); border-radius:10px; padding:.5rem .6rem; cursor:pointer }
+
+    /* === hero === */
+    .hero { padding: 5rem 0 3rem; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height:1.15; margin: .25rem 0 }
+    .lede { color: var(--muted); max-width: 60ch }
+
+    /* sections */
+    section { padding: 3rem 0 }
+    section h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin: 0 0 .5rem 0 }
+    section p.lead { color: var(--muted); margin-top:0 }
+
+    /* lists */
+    ul.reset { list-style: none; padding: 0; margin: 0 }
+
+    footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--border); text-align: center }
+    .sr-only{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#home" aria-label="Anime Club Home">
+        <span class="logo-mark" aria-hidden="true"></span>
+        Anime Club
+      </a>
+      <nav class="menu" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#events">Events</a>
+        <a href="#officers">Officers</a>
+        <a href="#join">Join</a>
+        <a href="#faq">FAQ</a>
+        <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="wrap hero">
+    <div class="grid grid-2">
+      <div>
+        <p class="tag">Weekly screenings • Open to all</p>
+        <h1>Welcome to the Anime Club</h1>
+        <p class="lede">We host weekly watch parties, seasonal picks, game nights, and art swaps. Come make friends, discover new shows, and share your favorites.</p>
+        <div style="margin-top:1rem; display:flex; gap:.75rem; flex-wrap:wrap">
+          <a class="btn" href="#join">Join the club</a>
+          <a class="btn btn-outline" href="#events">See upcoming events</a>
+        </div>
+      </div>
+      <div class="card" aria-hidden="true" style="padding:1rem; border-radius: var(--radius)">
+        <img src="https://images.unsplash.com/photo-1614851099511-773084f6911d?q=80&w=1200&auto=format&fit=crop" alt="Anime styled neon city illustration" style="border-radius: 12px; border:1px solid var(--border)">
+      </div>
+    </div>
+  </main>
+
+  <section id="about" class="wrap">
+    <h2>About</h2>
+    <p class="lead">The Anime Club is a community for fans of anime, manga, and Japanese pop culture. We meet weekly for screenings and social events, with special activities during new season premieres.</p>
+    <div class="grid grid-3" style="margin-top:1rem">
+      <div class="card" style="padding:1rem">
+        <strong>When</strong>
+        <p id="when">Fridays, 6:00–8:30 PM</p>
+      </div>
+      <div class="card" style="padding:1rem">
+        <strong>Where</strong>
+        <p id="where">Room 204, Student Center</p>
+      </div>
+      <div class="card" style="padding:1rem">
+        <strong>What to expect</strong>
+        <p>Group picks, member votes, snacks, discussion, and occasional cosplay nights.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="events" class="wrap">
+    <h2>Events</h2>
+    <p class="lead">Here’s what’s coming up. Filter by type or use the calendar link.</p>
+    <div style="display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; margin:.75rem 0 1rem">
+      <label class="sr-only" for="filter">Filter events</label>
+      <select id="filter" style="padding:.6rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:inherit">
+        <option value="all">All</option>
+        <option value="screening">Screenings</option>
+        <option value="social">Social</option>
+        <option value="meeting">Meetings</option>
+      </select>
+      <a class="btn btn-outline" href="#" id="calendarLink">📅 Add to Google Calendar</a>
+    </div>
+    <ul id="eventList" class="reset grid grid-2"></ul>
+  </section>
+
+  <section id="officers" class="wrap">
+    <h2>Officers</h2>
+    <p class="lead">Say hi to the team that keeps things running.</p>
+    <div class="grid grid-3" id="officerGrid"></div>
+  </section>
+
+  <section id="join" class="wrap">
+    <h2>Join the club</h2>
+    <p class="lead">Membership is free. Drop your details so we can send you event reminders and polls.</p>
+    <form id="joinForm" class="card" style="padding:1rem; display:grid; gap:.75rem" action="#" method="post">
+      <div>
+        <label for="name">Name</label><br>
+        <input id="name" name="name" required placeholder="Your name" style="width:100%;padding:.7rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:inherit" />
+      </div>
+      <div>
+        <label for="email">Email</label><br>
+        <input id="email" type="email" name="email" required placeholder="you@example.com" style="width:100%;padding:.7rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:inherit" />
+      </div>
+      <div>
+        <label for="fav">Favorite shows (optional)</label><br>
+        <input id="fav" name="favorites" placeholder="e.g., Haikyuu!!, Frieren, Demon Slayer" style="width:100%;padding:.7rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:inherit" />
+      </div>
+      <div style="display:flex; gap:.75rem; flex-wrap:wrap">
+        <button class="btn" type="submit">Sign up</button>
+        <button class="btn btn-outline" type="reset">Reset</button>
+      </div>
+      <p id="formMsg" class="lead" role="status" aria-live="polite" style="display:none"></p>
+    </form>
+    <p style="margin-top:.75rem;color:var(--muted)">→ You can wire this form to Formspree or Netlify Forms later. For now it saves to a CSV you can download.</p>
+  </section>
+
+  <section id="faq" class="wrap">
+    <h2>FAQ</h2>
+    <div class="grid grid-2">
+      <details class="card" style="padding:1rem">
+        <summary><strong>Do I need prior knowledge of anime?</strong></summary>
+        <p>Not at all! We welcome newcomers and seasoned fans alike.</p>
+      </details>
+      <details class="card" style="padding:1rem">
+        <summary><strong>How are shows selected?</strong></summary>
+        <p>Members nominate titles and vote in our seasonal poll. We keep a mix of genres and ratings suitable for a general audience.</p>
+      </details>
+      <details class="card" style="padding:1rem">
+        <summary><strong>Can I bring friends?</strong></summary>
+        <p>Yes! Guests are welcome at most events unless marked otherwise.</p>
+      </details>
+      <details class="card" style="padding:1rem">
+        <summary><strong>Is there a code of conduct?</strong></summary>
+        <p>Be kind, avoid spoilers without warnings, and follow venue rules. Harassment is not tolerated.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Anime Club • Built with ❤️ on GitHub Pages
+  </footer>
+
+  <script>
+    // === dark mode toggle with persistence ===
+    const themeBtn = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const preferred = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (preferred === 'dark') document.body.classList.add('dark');
+    themeBtn.setAttribute('aria-pressed', preferred === 'dark');
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      themeBtn.setAttribute('aria-pressed', isDark);
+    });
+
+    // === dynamic year ===
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // === events data (edit this!) ===
+    const events = [
+      { title: 'Fall Kickoff + Screening', date: '2025-09-05', time: '6:00 PM', where: 'Student Center 204', type: 'screening', note: 'Snacks provided' },
+      { title: 'Seasonal Picks Vote', date: '2025-09-12', time: '6:00 PM', where: 'Room 204', type: 'meeting', note: 'Bring suggestions!' },
+      { title: 'Cosplay Social Night', date: '2025-09-19', time: '6:00 PM', where: 'Commons Hall', type: 'social', note: 'Photoshoot corner' },
+      { title: 'Double Feature Friday', date: '2025-09-26', time: '6:00 PM', where: 'Room 204', type: 'screening', note: 'Vote winner + classic' },
+    ];
+
+    const eventList = document.getElementById('eventList');
+    const filter = document.getElementById('filter');
+
+    function renderEvents(kind = 'all') {
+      eventList.innerHTML = '';
+      const data = events
+        .filter(e => kind === 'all' ? true : e.type === kind)
+        .sort((a, b) => a.date.localeCompare(b.date));
+      if (!data.length) {
+        eventList.innerHTML = '<li>No events found for this filter.</li>';
+        return;
+      }
+      for (const e of data) {
+        const d = new Date(e.date + 'T00:00:00');
+        const nice = d.toLocaleDateString(undefined, { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+        const li = document.createElement('li');
+        li.className = 'card';
+        li.style.padding = '1rem';
+        li.innerHTML = `
+          <div style="display:flex;justify-content:space-between;gap:.75rem;align-items:flex-start;flex-wrap:wrap">
+            <div>
+              <div class="tag" style="margin-bottom:.5rem">${e.type}</div>
+              <h3 style="margin:.25rem 0">${e.title}</h3>
+              <p style="margin:.25rem 0; color: var(--muted)">${nice} • ${e.time} • ${e.where}</p>
+              ${e.note ? `<p style="margin:.25rem 0">${e.note}</p>` : ''}
+            </div>
+            <div style="display:flex; gap:.5rem">
+              <a class="btn btn-outline" href="https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${icsRange(e.date, e.time)}&location=${encodeURIComponent(e.where)}&details=${encodeURIComponent('Anime Club event')}" target="_blank" rel="noopener">Add</a>
+            </div>
+          </div>`;
+        eventList.appendChild(li);
+      }
+    }
+
+    filter.addEventListener('change', e => renderEvents(e.target.value));
+
+    function icsRange(dateStr, timeStr) {
+      // make a 2-hour window in local time for Google Calendar link
+      const [h, m, ap] = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i).slice(1);
+      let hour = parseInt(h, 10) % 12 + (ap.toUpperCase() === 'PM' ? 12 : 0);
+      const start = new Date(dateStr);
+      start.setHours(hour, parseInt(m,10), 0, 0);
+      const end = new Date(start.getTime() + 2 * 3600 * 1000);
+      const fmt = (d) => `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}T${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}00`;
+      return `${fmt(start)}/${fmt(end)}`;
+    }
+
+    // fill officers (edit these!)
+    const officers = [
+      { role: 'President', name: 'Alex Kim', contact: 'alex@example.edu' },
+      { role: 'Vice President', name: 'Rin Takahashi', contact: 'rin@example.edu' },
+      { role: 'Treasurer', name: 'Jordan Lee', contact: 'jordan@example.edu' },
+      { role: 'Events Lead', name: 'Mika Chen', contact: 'mika@example.edu' },
+      { role: 'Social Media', name: 'Sam Rivera', contact: 'sam@example.edu' },
+      { role: 'Secretary', name: 'Yui Sato', contact: 'yui@example.edu' },
+    ];
+
+    const grid = document.getElementById('officerGrid');
+    officers.forEach(o => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.padding = '1rem';
+      card.innerHTML = `
+        <div style="display:flex; gap:1rem; align-items:center">
+          <div style="width:54px;height:54px;border-radius:12px;background:var(--card);border:1px solid var(--border);display:grid;place-items:center;font-weight:700">${initials(o.name)}</div>
+          <div>
+            <div style="font-weight:700">${o.name}</div>
+            <div style="color:var(--muted)">${o.role}</div>
+            <a href="mailto:${o.contact}" style="font-size:.95rem">${o.contact}</a>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+
+    function initials(name){ return name.split(/\s+/).map(s=>s[0]).slice(0,2).join('').toUpperCase() }
+
+    // Join form: save entries to CSV (client-side) so you can export
+    const form = document.getElementById('joinForm');
+    const msg = document.getElementById('formMsg');
+    let rows = [['timestamp','name','email','favorites']];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const row = [new Date().toISOString(), fd.get('name'), fd.get('email'), fd.get('favorites') || ''];
+      rows.push(row);
+      msg.style.display = 'block';
+      msg.textContent = 'Thanks! You\'re on the list. Use the Download button below to export signups.';
+      // add a download button if not present
+      if (!document.getElementById('dl')) {
+        const a = document.createElement('a');
+        a.id = 'dl';
+        a.className = 'btn btn-outline';
+        a.style.marginTop = '.5rem';
+        a.href = '#';
+        a.textContent = 'Download signups (CSV)';
+        a.addEventListener('click', (ev)=>{
+          ev.preventDefault();
+          const csv = rows.map(r => r.map(x => '"'+String(x).replaceAll('"','""')+'"').join(',')).join('\n');
+          const blob = new Blob([csv], {type:'text/csv'});
+          const url = URL.createObjectURL(blob);
+          const dl = document.createElement('a');
+          dl.href = url; dl.download = 'anime-club-signups.csv'; dl.click();
+          setTimeout(()=>URL.revokeObjectURL(url), 5000);
+        });
+        form.appendChild(a);
+      }
+      form.reset();
+    });
+
+    // calendar link (full club)
+    const calendarId = '';
+    document.getElementById('calendarLink').addEventListener('click', (e)=>{
+      if (!calendarId) return; // set your Google Calendar ID if you have one
+      e.preventDefault();
+      const url = `https://calendar.google.com/calendar/u/0?cid=${encodeURIComponent(calendarId)}`;
+      window.open(url, '_blank', 'noopener');
+    });
+
+    // initial render
+    renderEvents('all');
+  </script>
+</body>
+</html>
